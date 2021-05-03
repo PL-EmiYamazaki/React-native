@@ -24,31 +24,31 @@ jobs:
     steps:
       - setup
       - run: yarn
-      - save_cache:
-        paths:
-          - node_modules
-        key: v1 -dependencies-{{ checksum "package.json" }}
+      # - save_cache:
+#         paths:
+#           - node_modules
+#         key: v1 -dependencies-{{ checksum "package.json" }}
 
-test:
-  executor: node-lts
-  steps:
-      - setup
-      - run:
-        command: |
-        yarn type-check
-        yarn lint
-        yarn coverage
-      - store_artifacts:
-        path: ~/repo/coverage
+# test:
+#   executor: node-lts
+#   steps:
+#       - setup
+#       - run:
+#         command: |
+#         yarn type-check
+#         yarn lint
+#         yarn coverage
+#       - store_artifacts:
+#         path: ~/repo/coverage
 
-workflows:
-  version 2
-  test:
-    jobs:
-      - build
-      - test:
-        requires:
-          - build
+# workflows:
+#   version 2
+#   test:
+#     jobs:
+#       - build
+#       - test:
+#         requires:
+#           - build
 
     # macos:
     #   xcode: 11.0.0 # Specify the Xcode version to use
